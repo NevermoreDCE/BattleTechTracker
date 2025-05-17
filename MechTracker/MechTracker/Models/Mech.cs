@@ -122,8 +122,15 @@ namespace MechTracker.Models
         public int[] Armor
         {
             get => ArmorString?.Split(',').Select(int.Parse).ToArray() ?? new int[11];
-            set => ArmorString = string.Join(",", value ?? new int[11]);
+            set
+            {
+                ArmorString = string.Join(",", value ?? new int[11]);
+                CurrentArmor = (value ?? new int[11]).ToArray();
+            }
         }
+
+        [Ignore]
+        public int[] CurrentArmor { get; set; } = new int[11];
 
         public string? ArmorString { get; set; } // mapped to DB
 
@@ -131,8 +138,15 @@ namespace MechTracker.Models
         public int[] Internals
         {
             get => InternalsString?.Split(',').Select(int.Parse).ToArray() ?? new int[8];
-            set => InternalsString = string.Join(",", value ?? new int[8]);
+            set
+            {
+                InternalsString = string.Join(",", value ?? new int[8]);
+                CurrentInternals = (value ?? new int[8]).ToArray();
+            }
         }
+
+        [Ignore]
+        public int[] CurrentInternals { get; set; } = new int[8];
 
         public string? InternalsString { get; set; } // mapped to DB
     }

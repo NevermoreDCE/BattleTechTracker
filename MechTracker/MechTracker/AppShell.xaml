@@ -12,4 +12,25 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="Create Mech"
+        ContentTemplate="{DataTemplate local:CreateMechPage}"
+        Route="CreateMechPage" />
+
+    <ShellContent
+        Title="Set Armor"
+        ContentTemplate="{DataTemplate local:SetArmorPage}"
+        Route="SetArmorPage" />
+
+    <ShellContent
+        Title="Set Internals"
+        ContentTemplate="{DataTemplate local:SetInternalsPage}"
+        Route="SetInternalsPage" />
+
+    <ShellContent
+        Title="Damage Input"
+        ContentTemplate="{DataTemplate local:DamageInputPage}"
+        Route="DamageInputPage" />
+    
+
 </Shell>

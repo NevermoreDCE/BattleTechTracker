@@ -11,14 +11,14 @@ namespace MechTracker.Views
 
         private async void OnCreateNewMechClicked(object sender, EventArgs e)
         {
-            // TODO: Navigate to Create New Mech page
-            await DisplayAlert("Stub", "Navigate to Create New Mech view", "OK");
+            // navigate to Create New Mech page
+            await Shell.Current.GoToAsync(nameof(CreateMechPage));
         }
 
         private async void OnLoadExistingMechClicked(object sender, EventArgs e)
         {
             // TODO: Navigate to Load Existing Mech page
-            await DisplayAlert("Stub", "Navigate to Load Existing Mech view", "OK");
+            await DisplayAlert("Stub", "Navigate to Load Existing Mech view (not implemented yet", "OK");
         }
     }
 }

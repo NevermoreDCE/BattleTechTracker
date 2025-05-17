@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MechTracker.Views.CreateMechPage"
+             Title="Create New Mech">
+    <Grid RowDefinitions="*,Auto" Padding="30">
+        <VerticalStackLayout Spacing="8" VerticalOptions="Center" Grid.Row="0">
+            <Label Text="Name" FontAttributes="Bold"/>
+            <Entry x:Name="NameEntry" Text="Griffin GRF-1E Sparky" Placeholder="Name" TextChanged="OnNameChanged"/>
+            <Label Text="Weight" FontAttributes="Bold"/>
+            <Entry x:Name="WeightEntry" Text="55" Placeholder="Weight" Keyboard="Numeric" TextChanged="OnWeightChanged"/>
+            <Label x:Name="WeightValidationLabel" TextColor="Red" FontSize="12" IsVisible="False"/>
+            <Label Text="Walking Speed" FontAttributes="Bold"/>
+            <Entry x:Name="WalkingSpeedEntry" Text="5" Placeholder="Walking Speed" Keyboard="Numeric" TextChanged="OnWalkingSpeedChanged"/>
+            <Label x:Name="WalkingSpeedValidationLabel" TextColor="Red" FontSize="12" IsVisible="False"/>
+            <Label Text="Running Speed" FontAttributes="Bold"/>
+            <Entry x:Name="RunningSpeedEntry" Text="8" Placeholder="Running Speed" Keyboard="Numeric" TextChanged="OnRunningSpeedChanged"/>
+            <Label x:Name="RunningSpeedValidationLabel" TextColor="Red" FontSize="12" IsVisible="False"/>
+            <Label Text="Jumping Speed" FontAttributes="Bold"/>
+            <Entry x:Name="JumpingSpeedEntry" Text="5" Placeholder="Jumping Speed" Keyboard="Numeric" TextChanged="OnJumpingSpeedChanged"/>
+            <Label Text="Heat Sinks" FontAttributes="Bold"/>
+            <Entry x:Name="HeatSinksEntry" Text="13" Placeholder="Heat Sinks" Keyboard="Numeric" TextChanged="OnHeatSinksChanged"/>
+        </VerticalStackLayout>
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" Padding="0,30,0,0">
+            <Button Text="Back" Clicked="OnBackClicked" HorizontalOptions="Start"/>
+            <Button x:Name="NextButton" Text="Next" Clicked="OnNextClicked" Grid.Column="1" HorizontalOptions="End"/>
+        </Grid>
+    </Grid>
+</ContentPage>
