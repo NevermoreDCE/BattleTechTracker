@@ -8,8 +8,8 @@ namespace MechTracker.Views
     [QueryProperty(nameof(MechId), "mechId")]
     public partial class SetArmorPage : ContentPage
     {
-        private Entry[] _armorEntries = new Entry[11];
-        private Mech _mech;
+        private readonly Entry[] _armorEntries = new Entry[11];
+        private Mech _mech = new();
         private readonly MechService _mechService;
         private int _mechId;
         public int MechId
@@ -18,7 +18,7 @@ namespace MechTracker.Views
             set
             {
                 _mechId = value;
-                _mech = _mechService.GetMechById(_mechId);
+                _mech = _mechService.GetMechById(_mechId) ?? new Mech();
             }
         }
 

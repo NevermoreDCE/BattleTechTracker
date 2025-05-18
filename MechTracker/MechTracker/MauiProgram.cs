@@ -20,9 +20,10 @@ namespace MechTracker
             // Register services
             builder.Services.AddSingleton<MechService>();
             builder.Services.AddTransient<CreateMechPage>();
-            builder.Services.AddTransient<DamageInputPage>();
+            builder.Services.AddTransient<WeaponDamageInputPage>();
             builder.Services.AddTransient<SetArmorPage>();
             builder.Services.AddTransient<SetInternalsPage>();
+            builder.Services.AddSingleton<IUserPromptService, UserPromptService>();
             // ... other service registrations ...
 
 #if DEBUG

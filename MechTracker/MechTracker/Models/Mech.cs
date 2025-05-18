@@ -125,14 +125,14 @@ namespace MechTracker.Models
             set
             {
                 ArmorString = string.Join(",", value ?? new int[11]);
-                CurrentArmor = (value ?? new int[11]).ToArray();
+                CurrentArmor = [.. (value ?? new int[11])];
             }
         }
 
         [Ignore]
         public int[] CurrentArmor { get; set; } = new int[11];
 
-        public string? ArmorString { get; set; } // mapped to DB
+        public string? ArmorString { get; set; } = "9,24,20,20,18,18,20,20,7,6,6"; // mapped to DB
 
         [Ignore]
         public int[] Internals
@@ -141,13 +141,13 @@ namespace MechTracker.Models
             set
             {
                 InternalsString = string.Join(",", value ?? new int[8]);
-                CurrentInternals = (value ?? new int[8]).ToArray();
+                CurrentInternals = [.. (value ?? new int[8])];
             }
         }
 
         [Ignore]
         public int[] CurrentInternals { get; set; } = new int[8];
 
-        public string? InternalsString { get; set; } // mapped to DB
+        public string? InternalsString { get; set; } = "3,18,13,13,9,9,13,13"; // mapped to DB
     }
 }

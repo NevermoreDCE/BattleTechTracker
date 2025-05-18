@@ -76,7 +76,7 @@ namespace MechTracker.Data
             {
                 var locations = new Critical[8][];
                 // 3 locations with 6 slots, rest with 12
-                int[] slotCounts = new int[] { 6, 12, 12, 12, 12, 12, 6, 6 };
+                int[] slotCounts = [6, 12, 12, 12, 12, 12, 6, 6];
                 for (int i = 0; i < 8; i++)
                     locations[i] = new Critical[slotCounts[i]];
                 var dbLocs = await _database.Table<MechCriticalLocation>().Where(x => x.MechId == mechId).ToListAsync();
@@ -113,7 +113,7 @@ namespace MechTracker.Data
             {
                 _logger.LogError(ex, "Error loading MechLocations for MechId {parameters}", mechId);
                 // Return empty structure on error
-                int[] slotCounts = new int[] { 6, 12, 12, 12, 12, 12, 6, 6 };
+                int[] slotCounts = [6, 12, 12, 12, 12, 12, 6, 6];
                 var locations = new Critical[8][];
                 for (int i = 0; i < 8; i++)
                     locations[i] = new Critical[slotCounts[i]];

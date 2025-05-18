@@ -9,7 +9,7 @@ namespace MechTracker.Views
     public partial class CreateMechPage : ContentPage
     {
         private readonly MechService _mechService;
-        private Mech _mech = new Mech();
+        private Mech _mech = new();
         private int _mechId;
         public int MechId
         {
@@ -32,7 +32,7 @@ namespace MechTracker.Views
             base.OnAppearing();
             // Update UI fields with loaded values
             NameEntry.Text = "Griffin GRF-1E Sparky";//_mech.Name;
-            WeightEntry.Text = "88";// _mech.Weight.ToString();
+            WeightEntry.Text = "85";// _mech.Weight.ToString();
             WalkingSpeedEntry.Text = "5";// _mech.WalkingSpeed.ToString();
             RunningSpeedEntry.Text = "8";// _mech.RunningSpeed.ToString();
             JumpingSpeedEntry.Text = "5";// _mech.JumpingSpeed.ToString();
@@ -62,7 +62,7 @@ namespace MechTracker.Views
             WalkingSpeedValidationLabel.IsVisible = false;
             ValidateNextButton();
             // Running speed may depend on this value
-            OnRunningSpeedChanged(null, null);
+            OnRunningSpeedChanged(this, e);
         }
 
         private void OnRunningSpeedChanged(object sender, TextChangedEventArgs e)
@@ -115,7 +115,7 @@ namespace MechTracker.Views
         private async void OnBackClicked(object sender, EventArgs e)
         {
             // Discard the Mech and go back
-            _mech = null;
+            _mech = new Mech();
             await Shell.Current.GoToAsync("..", true);
         }
 

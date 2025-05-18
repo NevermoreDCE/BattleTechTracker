@@ -5,26 +5,26 @@ namespace MechTracker.Services
 {
     public class MechService
     {
-        private readonly ObservableCollection<Mech> _loadedMechs = new();
+        private readonly ObservableCollection<Mech> _loadedMechs = [];
         public IReadOnlyCollection<Mech> LoadedMechs => _loadedMechs;
 
-        public void AddMech(Mech mech)
+        public virtual void AddMech(Mech mech)
         {
             if (!_loadedMechs.Any(m => m.Id == mech.Id))
                 _loadedMechs.Add(mech);
         }
 
-        public void RemoveMech(Mech mech)
+        public virtual void RemoveMech(Mech mech)
         {
             _loadedMechs.Remove(mech);
         }
 
-        public void ClearMechs()
+        public virtual void ClearMechs()
         {
             _loadedMechs.Clear();
         }
 
-        public Mech? GetMechById(int id)
+        public virtual Mech? GetMechById(int id)
         {
             return _loadedMechs.FirstOrDefault(m => m.Id == id);
         }

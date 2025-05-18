@@ -7,8 +7,8 @@ namespace MechTracker.Views
     [QueryProperty(nameof(MechId), "mechId")]
     public partial class SetInternalsPage : ContentPage
     {
-        private Entry[] _internalEntries = new Entry[MechConstants.InternalLabels.Length];
-        private Mech _mech;
+        private readonly Entry[] _internalEntries = new Entry[MechConstants.InternalLabels.Length];
+        private Mech _mech = new();
         private readonly MechService _mechService;
         private int _mechId;
         public int MechId
@@ -17,7 +17,7 @@ namespace MechTracker.Views
             set
             {
                 _mechId = value;
-                _mech = _mechService.GetMechById(_mechId);
+                _mech = _mechService.GetMechById(_mechId) ?? new Mech();
             }
         }
 
@@ -50,7 +50,7 @@ namespace MechTracker.Views
         private async void OnNextClicked(object sender, EventArgs e)
         {
             UpdateMechInternals();
-            await Shell.Current.GoToAsync($"DamageInputPage?mechId={_mech.Id}");
+            await Shell.Current.GoToAsync($"{nameof(WeaponDamageInputPage)}?mechId={_mech.Id}");
         }
 
         private void UpdateMechInternals()

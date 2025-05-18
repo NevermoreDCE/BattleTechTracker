@@ -10,7 +10,7 @@ namespace MechTracker
             Routing.RegisterRoute(nameof(CreateMechPage), typeof(CreateMechPage));
             Routing.RegisterRoute(nameof(SetArmorPage), typeof(SetArmorPage));
             Routing.RegisterRoute(nameof(SetInternalsPage), typeof(SetInternalsPage));
-            Routing.RegisterRoute(nameof(DamageInputPage), typeof(DamageInputPage));
+            Routing.RegisterRoute(nameof(WeaponDamageInputPage), typeof(WeaponDamageInputPage));
         }
     }
 }

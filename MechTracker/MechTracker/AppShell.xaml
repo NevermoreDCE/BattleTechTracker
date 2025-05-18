@@ -28,9 +28,9 @@
         Route="SetInternalsPage" />
 
     <ShellContent
-        Title="Damage Input"
-        ContentTemplate="{DataTemplate local:DamageInputPage}"
-        Route="DamageInputPage" />
+        Title="Weapon Damage Input"
+        ContentTemplate="{DataTemplate local:WeaponDamageInputPage}"
+        Route="WeaponDamageInputPage" />
     
 
 </Shell>
