@@ -37,6 +37,8 @@ namespace MechTracker.Views
             RunningSpeedEntry.Text = "8";// _mech.RunningSpeed.ToString();
             JumpingSpeedEntry.Text = "5";// _mech.JumpingSpeed.ToString();
             HeatSinksEntry.Text = "13";// _mech.HeatSinks.ToString();
+            PilotSkillEntry.Text = "5"; // _mech.PilotSkill.ToString();
+            GunnerySkillEntry.Text = "4"; // _mech.GunnerySkill.ToString();
         }
 
         private void OnWeightChanged(object sender, TextChangedEventArgs e)
@@ -106,6 +108,18 @@ namespace MechTracker.Views
             _mech.Name = NameEntry.Text;
         }
 
+        private void OnPilotSkillChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(PilotSkillEntry.Text, out int pilotSkill))
+                _mech.PilotSkill = pilotSkill;
+        }
+
+        private void OnGunnerySkillChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(GunnerySkillEntry.Text, out int gunnerySkill))
+                _mech.GunnerySkill = gunnerySkill;
+        }
+
         private void ValidateNextButton()
         {
             bool valid = !WeightValidationLabel.IsVisible && !RunningSpeedValidationLabel.IsVisible;
@@ -142,6 +156,10 @@ namespace MechTracker.Views
                 _mech.JumpingSpeed = jumpingSpeed;
             if (int.TryParse(HeatSinksEntry.Text, out int heatSinks))
                 _mech.HeatSinks = heatSinks;
+            if (int.TryParse(PilotSkillEntry.Text, out int pilotSkill))
+                _mech.PilotSkill = pilotSkill;
+            if (int.TryParse(GunnerySkillEntry.Text, out int gunnerySkill))
+                _mech.GunnerySkill = gunnerySkill;
         }
     }
 }

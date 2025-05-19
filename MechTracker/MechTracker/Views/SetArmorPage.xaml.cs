@@ -31,14 +31,17 @@ namespace MechTracker.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            ArmorStack.Children.Clear();
+            ArmorGrid.Children.Clear();
+            int numRows = (MechConstants.ArmorLabels.Length + 1) / 2;
             for (int i = 0; i < MechConstants.ArmorLabels.Length; i++)
             {
-                var label = new Label { Text = MechConstants.ArmorLabels[i] };
+                int row = i % numRows;
+                int col = i / numRows;
+                var label = new Label { Text = MechConstants.ArmorLabels[i], VerticalOptions = LayoutOptions.Center };
                 var entry = new Entry { Keyboard = Keyboard.Numeric, Text = (_mech?.Armor != null && _mech.Armor.Length > i) ? _mech.Armor[i].ToString() : "0" };
                 _armorEntries[i] = entry;
-                ArmorStack.Children.Add(label);
-                ArmorStack.Children.Add(entry);
+                ArmorGrid.Add(label, col, row * 2);
+                ArmorGrid.Add(entry, col, row * 2 + 1);
             }
         }
 

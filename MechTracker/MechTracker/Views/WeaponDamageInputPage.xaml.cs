@@ -72,5 +72,10 @@ namespace MechTracker.Views
             // Refresh the display after applying damage
             OnAppearing();
         }
+
+        private async void OnDoneClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"{nameof(SelectPhasePage)}");
+        }
     }
 }

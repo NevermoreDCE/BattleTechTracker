@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MechTracker.Views.SelectPhasePage"
+             Title="Select Phase">
+    <Grid Padding="30" RowSpacing="30" ColumnSpacing="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"  />
+            <RowDefinition Height="*"  />
+            <RowDefinition Height="*"  />
+            <RowDefinition Height="*"  />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!-- First column -->
+        <Button Text="Movement" Grid.Row="0" Grid.Column="0" Margin="0,0,8,8" Clicked="OnMovementClicked" />
+        <Button Text="Weapon Shooting" Grid.Row="1" Grid.Column="0" Margin="0,0,8,8" Clicked="OnWeaponShootingClicked" />
+        <Button Text="Weapon Damage" Grid.Row="2" Grid.Column="0" Margin="0,0,8,8" Clicked="OnWeaponDamageClicked" />
+        <!-- Second column -->
+        <Button Text="Physical Attacks" Grid.Row="0" Grid.Column="1" Margin="8,0,0,8" Clicked="OnPhysicalAttacksClicked" />
+        <Button Text="Physical Damage" Grid.Row="1" Grid.Column="1" Margin="8,0,0,8" Clicked="OnPhysicalDamageClicked" />
+        <Button Text="Heat Resolution" Grid.Row="2" Grid.Column="1" Margin="8,0,0,8" Clicked="OnHeatResolutionClicked" />
+        <!-- End Phase button centered below -->
+        <Button Text="End Phase" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,16,0,0" Clicked="OnEndPhaseClicked" HorizontalOptions="Fill" />
+    </Grid>
+</ContentPage>

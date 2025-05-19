@@ -9,9 +9,10 @@
                 <!-- Damage Entry fields will be added in code-behind -->
             </VerticalStackLayout>
         </ScrollView>
-        <Grid Grid.Row="1" ColumnDefinitions="*,*" Padding="0,30,0,0">
-            <Button Text="Back" Clicked="OnBackClicked" HorizontalOptions="Start"/>
-            <Button Text="Apply Damage" Clicked="OnApplyDamageClicked" Grid.Column="1" HorizontalOptions="End"/>
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*" Padding="0,30,0,0">
+            <Button Text="Back" Clicked="OnBackClicked" Grid.Column="0" HorizontalOptions="Start"/>
+            <Button Text="Apply Damage" Clicked="OnApplyDamageClicked" Grid.Column="1" HorizontalOptions="Center"/>
+            <Button Text="Done" Clicked="OnDoneClicked" Grid.Column="2" HorizontalOptions="End"/>
         </Grid>
     </Grid>
 </ContentPage>

@@ -8,10 +8,17 @@ namespace MechTracker.Services
         private readonly ObservableCollection<Mech> _loadedMechs = [];
         public IReadOnlyCollection<Mech> LoadedMechs => _loadedMechs;
 
-        public virtual void AddMech(Mech mech)
+        public virtual int AddMech(Mech mech)
         {
-            if (!_loadedMechs.Any(m => m.Id == mech.Id))
+            if(mech.InstanceId == 0)
+            {
+                mech.InstanceId = _loadedMechs.Count + 1;
+            }
+
+            if (!_loadedMechs.Any(m => m.InstanceId == mech.InstanceId))
                 _loadedMechs.Add(mech);
+
+            return mech.InstanceId;
         }
 
         public virtual void RemoveMech(Mech mech)
@@ -26,7 +33,12 @@ namespace MechTracker.Services
 
         public virtual Mech? GetMechById(int id)
         {
-            return _loadedMechs.FirstOrDefault(m => m.Id == id);
+            return _loadedMechs.FirstOrDefault(m => m.InstanceId == id);
+        }
+
+        public IReadOnlyCollection<Mech> GetAllMechs()
+        {
+            return LoadedMechs;
         }
     }
 }

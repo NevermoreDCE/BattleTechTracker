@@ -5,9 +5,7 @@
              Title="Set Armor Values">
     <Grid RowDefinitions="*,Auto" Padding="30">
         <ScrollView Grid.Row="0">
-            <VerticalStackLayout x:Name="ArmorStack" Spacing="12" VerticalOptions="Center">
-                <!-- Armor Entry fields will be added in code-behind -->
-            </VerticalStackLayout>
+            <Grid x:Name="ArmorGrid" ColumnDefinitions="*,*" RowSpacing="12" ColumnSpacing="12" VerticalOptions="Center"/>
         </ScrollView>
         <Grid Grid.Row="1" ColumnDefinitions="*,*" Padding="0,30,0,0">
             <Button Text="Back" Clicked="OnBackClicked" HorizontalOptions="Start"/>

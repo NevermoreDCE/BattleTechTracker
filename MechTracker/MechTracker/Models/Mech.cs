@@ -7,6 +7,8 @@ namespace MechTracker.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        [Ignore]
+        public int InstanceId { get; set; }
         public string? Name { get; set; }
         public int Weight { get; set; }
         public int WalkingSpeed { get; set; }
@@ -14,6 +16,8 @@ namespace MechTracker.Models
         public int JumpingSpeed { get; set; }
         public int Heat { get; set; } = 0;
         public int HeatSinks { get; set; } = 0;
+        public int PilotSkill { get; set; } = 5;
+        public int GunnerySkill { get; set; } = 4;
         [Ignore]
         public Critical[][] Locations { get; set; } =
            [
@@ -149,5 +153,10 @@ namespace MechTracker.Models
         public int[] CurrentInternals { get; set; } = new int[8];
 
         public string? InternalsString { get; set; } = "3,18,13,13,9,9,13,13"; // mapped to DB
+
+        public int TotalCurrentArmor => CurrentArmor?.Sum() ?? 0;
+        public int TotalArmor => Armor?.Sum() ?? 0;
+        public int TotalCurrentInternals => CurrentInternals?.Sum() ?? 0;
+        public int TotalInternals => Internals?.Sum() ?? 0;
     }
 }

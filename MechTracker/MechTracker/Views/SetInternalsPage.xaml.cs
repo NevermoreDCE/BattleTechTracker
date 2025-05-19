@@ -30,14 +30,17 @@ namespace MechTracker.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            InternalsStack.Children.Clear();
+            InternalsGrid.Children.Clear();
+            int numRows = (MechConstants.InternalLabels.Length + 1) / 2;
             for (int i = 0; i < MechConstants.InternalLabels.Length; i++)
             {
-                var label = new Label { Text = MechConstants.InternalLabels[i] };
+                int row = i % numRows;
+                int col = i / numRows;
+                var label = new Label { Text = MechConstants.InternalLabels[i], VerticalOptions = LayoutOptions.Center };
                 var entry = new Entry { Keyboard = Keyboard.Numeric, Text = (_mech?.Internals != null && _mech.Internals.Length > i) ? _mech.Internals[i].ToString() : "0" };
                 _internalEntries[i] = entry;
-                InternalsStack.Children.Add(label);
-                InternalsStack.Children.Add(entry);
+                InternalsGrid.Add(label, col, row * 2);
+                InternalsGrid.Add(entry, col, row * 2 + 1);
             }
         }
 
@@ -50,7 +53,7 @@ namespace MechTracker.Views
         private async void OnNextClicked(object sender, EventArgs e)
         {
             UpdateMechInternals();
-            await Shell.Current.GoToAsync($"{nameof(WeaponDamageInputPage)}?mechId={_mech.Id}");
+            await Shell.Current.GoToAsync(nameof(SelectPhasePage));
         }
 
         private void UpdateMechInternals()

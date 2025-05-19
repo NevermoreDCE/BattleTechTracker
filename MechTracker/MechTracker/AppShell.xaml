@@ -31,6 +31,17 @@
         Title="Weapon Damage Input"
         ContentTemplate="{DataTemplate local:WeaponDamageInputPage}"
         Route="WeaponDamageInputPage" />
-    
+
+
+    <ShellContent
+        Title="Select Phase"
+        ContentTemplate="{DataTemplate local:SelectPhasePage}"
+        Route="SelectPhasePage" />
+
+    <ShellContent
+        Title="Select Mech to Activate"
+        ContentTemplate="{DataTemplate local:SelectActiveMechPage}"
+        Route="SelectActiveMechPage" />
+
 
 </Shell>

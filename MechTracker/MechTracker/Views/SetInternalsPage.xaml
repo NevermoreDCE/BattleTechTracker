@@ -5,9 +5,7 @@
              Title="Set Internals Values">
     <Grid RowDefinitions="*,Auto" Padding="30">
         <ScrollView Grid.Row="0">
-            <VerticalStackLayout x:Name="InternalsStack" Spacing="12" VerticalOptions="Center">
-                <!-- Internals Entry fields will be added in code-behind -->
-            </VerticalStackLayout>
+            <Grid x:Name="InternalsGrid" ColumnDefinitions="*,*" RowSpacing="12" ColumnSpacing="12" VerticalOptions="Center"/>
         </ScrollView>
         <Grid Grid.Row="1" ColumnDefinitions="*,*" Padding="0,30,0,0">
             <Button Text="Back" Clicked="OnBackClicked" HorizontalOptions="Start"/>

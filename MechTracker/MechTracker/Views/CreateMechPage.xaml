@@ -20,6 +20,10 @@
             <Entry x:Name="JumpingSpeedEntry" Text="5" Placeholder="Jumping Speed" Keyboard="Numeric" TextChanged="OnJumpingSpeedChanged"/>
             <Label Text="Heat Sinks" FontAttributes="Bold"/>
             <Entry x:Name="HeatSinksEntry" Text="13" Placeholder="Heat Sinks" Keyboard="Numeric" TextChanged="OnHeatSinksChanged"/>
+            <Label Text="Gunnery Skill" FontAttributes="Bold"/>
+            <Entry x:Name="GunnerySkillEntry" Text="4" Placeholder="Gunnery Skill" Keyboard="Numeric" TextChanged="OnGunnerySkillChanged"/>
+            <Label Text="Pilot Skill" FontAttributes="Bold"/>
+            <Entry x:Name="PilotSkillEntry" Text="5" Placeholder="Pilot Skill" Keyboard="Numeric" TextChanged="OnPilotSkillChanged"/>
         </VerticalStackLayout>
         <Grid Grid.Row="1" ColumnDefinitions="*,*" Padding="0,30,0,0">
             <Button Text="Back" Clicked="OnBackClicked" HorizontalOptions="Start"/>
