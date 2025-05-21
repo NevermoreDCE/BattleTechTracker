@@ -1,6 +1,9 @@
-﻿using MechTracker.Services;
+﻿using MechTracker.Constants;
+using MechTracker.Data;
+using MechTracker.Services;
 using MechTracker.Views;
 using Microsoft.Extensions.Logging;
+using SQLite;
 
 namespace MechTracker
 {
@@ -18,6 +21,11 @@ namespace MechTracker
                 });
 
             // Register services
+            string dbPath = MechConstants.GetDatabasePath();
+            builder.Services.AddSingleton(new SQLiteAsyncConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create));
+
+            builder.Services.AddSingleton<MechRepository>();
+
             builder.Services.AddSingleton<MechService>();
             builder.Services.AddTransient<CreateMechPage>();
             builder.Services.AddTransient<WeaponDamageInputPage>();
@@ -25,6 +33,7 @@ namespace MechTracker
             builder.Services.AddTransient<SetInternalsPage>();
             builder.Services.AddTransient<SelectPhasePage>();
             builder.Services.AddTransient<SelectActiveMechPage>();
+            builder.Services.AddTransient<LoadMechPage>();
             builder.Services.AddSingleton<IUserPromptService, UserPromptService>();
             // ... other service registrations ...
 

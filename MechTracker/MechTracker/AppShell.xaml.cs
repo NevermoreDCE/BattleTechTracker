@@ -13,6 +13,7 @@ namespace MechTracker
             Routing.RegisterRoute(nameof(WeaponDamageInputPage), typeof(WeaponDamageInputPage));
             Routing.RegisterRoute(nameof(SelectPhasePage), typeof(SelectPhasePage));
             Routing.RegisterRoute(nameof(SelectActiveMechPage), typeof(SelectActiveMechPage));
+            Routing.RegisterRoute(nameof(LoadMechPage), typeof(LoadMechPage));
         }
     }
 }

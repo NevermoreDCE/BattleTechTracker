@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MechTracker.Models
 {
-    internal class SimpleComponent : Critical
+    public class SimpleComponent : Critical
     {
     }
 }

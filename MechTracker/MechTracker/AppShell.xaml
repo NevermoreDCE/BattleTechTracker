@@ -43,5 +43,10 @@
         ContentTemplate="{DataTemplate local:SelectActiveMechPage}"
         Route="SelectActiveMechPage" />
 
+    <ShellContent
+    Title="Select Mech to Load"
+    ContentTemplate="{DataTemplate local:LoadMechPage}"
+    Route="LoadMechPage" />
+
 
 </Shell>

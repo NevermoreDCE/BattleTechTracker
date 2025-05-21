@@ -14,9 +14,9 @@ namespace MechTracker.Data
         private readonly SQLiteAsyncConnection _database;
         private readonly ILogger<MechRepository> _logger;
 
-        public MechRepository(string dbPath, ILogger<MechRepository> logger)
+        public MechRepository(SQLiteAsyncConnection database, ILogger<MechRepository> logger)
         {
-            _database = new SQLiteAsyncConnection(dbPath);
+            _database = database;
             _logger = logger;
             _database.CreateTableAsync<Mech>().Wait();
             _database.CreateTableAsync<Weapon>().Wait();
@@ -56,6 +56,7 @@ namespace MechTracker.Data
                             mcl.MediumRange = weapon.MediumRange;
                             mcl.LongRange = weapon.LongRange;
                             mcl.MinimumRange = weapon.MinimumRange;
+                            mcl.CriticalSlots = weapon.CriticalSlots;
                         }
                         toInsert.Add(mcl);
                     }
@@ -84,7 +85,7 @@ namespace MechTracker.Data
                 {
                     if (dbLoc.LocationIndex < 0 || dbLoc.LocationIndex >= 8) continue;
                     if (dbLoc.SlotIndex < 0 || dbLoc.SlotIndex >= locations[dbLoc.LocationIndex].Length) continue;
-                    if (dbLoc.Damage.HasValue && dbLoc.HeatGenerated.HasValue && dbLoc.ShortRange.HasValue && dbLoc.MediumRange.HasValue && dbLoc.LongRange.HasValue && dbLoc.MinimumRange.HasValue)
+                    if (dbLoc.Damage.HasValue && dbLoc.HeatGenerated.HasValue && dbLoc.ShortRange.HasValue && dbLoc.MediumRange.HasValue && dbLoc.LongRange.HasValue && dbLoc.MinimumRange.HasValue && dbLoc.CriticalSlots.HasValue)
                     {
                         locations[dbLoc.LocationIndex][dbLoc.SlotIndex] = new Weapon
                         {
@@ -95,7 +96,8 @@ namespace MechTracker.Data
                             ShortRange = dbLoc.ShortRange.Value,
                             MediumRange = dbLoc.MediumRange.Value,
                             LongRange = dbLoc.LongRange.Value,
-                            MinimumRange = dbLoc.MinimumRange.Value
+                            MinimumRange = dbLoc.MinimumRange.Value,
+                            CriticalSlots = dbLoc.CriticalSlots.Value
                         };
                     }
                     else
@@ -126,7 +128,13 @@ namespace MechTracker.Data
         {
             try
             {
-                var mechs = await _database.Table<Mech>().Where(x => filter.Equals(string.Empty, StringComparison.Ordinal) || (x.Name != null && x.Name.Contains(filter))).ToArrayAsync();
+                if (string.IsNullOrEmpty(filter))
+                {
+                    return await _database.Table<Mech>().ToArrayAsync();
+                }
+
+                var mechs = await _database.Table<Mech>().Where(x => x.Name != null && x.Name.Contains(filter)).ToArrayAsync();
+
                 foreach (var mech in mechs)
                 {
                     mech.Locations = await LoadMechLocationsAsync(mech.Id);
@@ -136,6 +144,32 @@ namespace MechTracker.Data
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error getting mechs with filter {parameters}", filter);
+                return [];
+            }
+        }
+
+        public async Task<Mech[]> GetMechsByFullNameAsync(string nameFilter, string chassisFilter, string modelFilter)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(nameFilter) || string.IsNullOrEmpty(chassisFilter) || string.IsNullOrEmpty(modelFilter))
+                {
+                    return await _database.Table<Mech>().ToArrayAsync();
+                }
+
+                var mechs = await _database.Table<Mech>().Where(x => (x.Name != null && x.Name.Contains(nameFilter)) 
+                && (x.Chassis!=null && x.Chassis.Contains(chassisFilter))
+                && (x.Model!=null && x.Model.Contains(modelFilter))).ToArrayAsync();
+
+                foreach (var mech in mechs)
+                {
+                    mech.Locations = await LoadMechLocationsAsync(mech.Id);
+                }
+                return mechs;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting mechs with filter {parameters}", $"NameFilter: {nameFilter}, ChassisFilter: {chassisFilter}, ModelFilter:{modelFilter}");
                 return [];
             }
         }
@@ -196,7 +230,10 @@ namespace MechTracker.Data
         {
             try
             {
-                return await _database.Table<Weapon>().Where(x=> filter.Equals(string.Empty, StringComparison.Ordinal) || (x.Name != null && x.Name.Contains(filter))).ToArrayAsync();
+                if (string.IsNullOrEmpty(filter))
+                    return await _database.Table<Weapon>().ToArrayAsync();
+                else
+                    return await _database.Table<Weapon>().Where(x => x.Name != null && x.Name.Contains(filter)).ToArrayAsync();
             }
             catch (Exception ex)
             {

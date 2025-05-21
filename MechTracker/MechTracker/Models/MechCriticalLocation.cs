@@ -23,5 +23,6 @@ namespace MechTracker.Models
         public int? MediumRange { get; set; }
         public int? LongRange { get; set; }
         public int? MinimumRange { get; set; }
+        public int? CriticalSlots { get; set; }
     }
 }

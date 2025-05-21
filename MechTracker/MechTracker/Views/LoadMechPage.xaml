@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:MechTracker.Converters"
-             x:Class="MechTracker.Views.SelectActiveMechPage"
-             Title="Select Active Mech">
+             x:Class="MechTracker.Views.LoadMechPage"
+             Title="Load Mech">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:SumArrayConverter x:Key="SumArrayConverter" />
@@ -30,7 +30,7 @@
                 <DataTemplate>
                     <Frame>
                         <VerticalStackLayout>
-                            <Label Text="{Binding DisplayName}" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" />
+                          <Label Text="{Binding DisplayName}" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" />
                             <Label Text="{Binding Weight, StringFormat='{}{0} Tons'}" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center" />
                             <HorizontalStackLayout HorizontalOptions="Center" Spacing="16">
                                 <Label FontSize="14">

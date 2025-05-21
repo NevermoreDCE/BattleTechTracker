@@ -31,8 +31,10 @@ namespace MechTracker.Views
         {
             base.OnAppearing();
             // Update UI fields with loaded values
-            NameEntry.Text = "Griffin GRF-1E Sparky";//_mech.Name;
-            WeightEntry.Text = "85";// _mech.Weight.ToString();
+            NameEntry.Text = "Sparky";//_mech.Name;
+            ChassisEntry.Text = "Griffin";// _mech.Chassis ?? string.Empty;
+            ModelEntry.Text = "GRF-1E";// _mech.Model ?? string.Empty;
+            WeightEntry.Text = "55";// _mech.Weight.ToString();
             WalkingSpeedEntry.Text = "5";// _mech.WalkingSpeed.ToString();
             RunningSpeedEntry.Text = "8";// _mech.RunningSpeed.ToString();
             JumpingSpeedEntry.Text = "5";// _mech.JumpingSpeed.ToString();
@@ -120,6 +122,16 @@ namespace MechTracker.Views
                 _mech.GunnerySkill = gunnerySkill;
         }
 
+        private void OnChassisChanged(object sender, TextChangedEventArgs e)
+        {
+            _mech.Chassis = ChassisEntry.Text;
+        }
+
+        private void OnModelChanged(object sender, TextChangedEventArgs e)
+        {
+            _mech.Model = ModelEntry.Text;
+        }
+
         private void ValidateNextButton()
         {
             bool valid = !WeightValidationLabel.IsVisible && !RunningSpeedValidationLabel.IsVisible;
@@ -146,6 +158,8 @@ namespace MechTracker.Views
         private void UpdateMech()
         {
             _mech.Name = NameEntry.Text;
+            _mech.Chassis = ChassisEntry.Text;
+            _mech.Model = ModelEntry.Text;
             if (int.TryParse(WeightEntry.Text, out int weight))
                 _mech.Weight = weight;
             if (int.TryParse(WalkingSpeedEntry.Text, out int walkingSpeed))

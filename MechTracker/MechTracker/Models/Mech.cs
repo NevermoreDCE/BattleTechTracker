@@ -10,6 +10,10 @@ namespace MechTracker.Models
         [Ignore]
         public int InstanceId { get; set; }
         public string? Name { get; set; }
+        public string? Chassis { get; set; }
+        public string? Model { get; set; }
+        [Ignore]
+        public string DisplayName => $"{Chassis} {Model}" + (string.IsNullOrEmpty(Name) ? "" : $" {Name}");
         public int Weight { get; set; }
         public int WalkingSpeed { get; set; }
         public int RunningSpeed { get; set; }
@@ -154,9 +158,10 @@ namespace MechTracker.Models
 
         public string? InternalsString { get; set; } = "3,18,13,13,9,9,13,13"; // mapped to DB
 
-        public int TotalCurrentArmor => CurrentArmor?.Sum() ?? 0;
-        public int TotalArmor => Armor?.Sum() ?? 0;
-        public int TotalCurrentInternals => CurrentInternals?.Sum() ?? 0;
-        public int TotalInternals => Internals?.Sum() ?? 0;
+        public void InitMech()
+        {
+            Internals.CopyTo(CurrentInternals, 0);
+            Armor.CopyTo(CurrentArmor,0);
+        }
     }
 }

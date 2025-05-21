@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTracker", "MechTracker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTracker.Tests", "MechTracker.Tests\MechTracker.Tests.csproj", "{B0829A07-BD10-4616-8EDB-4BF90771E85F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTracker.Importer", "MechTracker.Importer\MechTracker.Importer.csproj", "{E99650D8-7A3D-4CB9-B0A8-AF9E49C96997}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{B0829A07-BD10-4616-8EDB-4BF90771E85F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0829A07-BD10-4616-8EDB-4BF90771E85F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0829A07-BD10-4616-8EDB-4BF90771E85F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E99650D8-7A3D-4CB9-B0A8-AF9E49C96997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E99650D8-7A3D-4CB9-B0A8-AF9E49C96997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E99650D8-7A3D-4CB9-B0A8-AF9E49C96997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E99650D8-7A3D-4CB9-B0A8-AF9E49C96997}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

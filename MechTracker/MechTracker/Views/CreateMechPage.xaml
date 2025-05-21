@@ -6,7 +6,11 @@
     <Grid RowDefinitions="*,Auto" Padding="30">
         <VerticalStackLayout Spacing="8" VerticalOptions="Center" Grid.Row="0">
             <Label Text="Name" FontAttributes="Bold"/>
-            <Entry x:Name="NameEntry" Text="Griffin GRF-1E Sparky" Placeholder="Name" TextChanged="OnNameChanged"/>
+            <Entry x:Name="NameEntry" Text="Sparky" Placeholder="Name" TextChanged="OnNameChanged"/>
+            <Label Text="Chassis" FontAttributes="Bold"/>
+            <Entry x:Name="ChassisEntry" Text="Griffin" Placeholder="Chassis" TextChanged="OnChassisChanged"/>
+            <Label Text="Model" FontAttributes="Bold"/>
+            <Entry x:Name="ModelEntry" Text="GRF-1E" Placeholder="Model" TextChanged="OnModelChanged"/>
             <Label Text="Weight" FontAttributes="Bold"/>
             <Entry x:Name="WeightEntry" Text="55" Placeholder="Weight" Keyboard="Numeric" TextChanged="OnWeightChanged"/>
             <Label x:Name="WeightValidationLabel" TextColor="Red" FontSize="12" IsVisible="False"/>
